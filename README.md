@@ -2,7 +2,15 @@
 
 A simple Docker image for [rushy](https://github.com/luchkonikita/rushy), Google lighthouse runner that supports multiple URLs and splitting these URLs into chunks to process in parallel.
 
+It has google chrome and rushy installed, so you can run performance checks in your CI environment, and provides a simple API.
+
 ## Usage
+
+Please pull the image from [oleggromov/rushy](https://hub.docker.com/r/oleggromov/rushy/):
+
+```
+docker pull oleggromov/rushy
+```
 
 The image provides the following "API" with _mounted volumes_ and _environment variables_.
 
@@ -29,6 +37,10 @@ Since `rushy` expects at least `--config` to be set, you should provide your con
 
 For more about rushy parameters, please take a look at the [Usage section](https://github.com/luchkonikita/rushy#usage) of the Readme.
 
+### Logging
+
+Don't forget to switch to using `serial` rushy logger since Docker by default disables interactive shell and you won't see any progress.
+
 ### Example
 
 Here's how you can run your container with rushy started as a single worker
@@ -40,7 +52,7 @@ docker run \
   -e "RUSHY_CONFIG=rushy.json" \
   -e RUSHY_WORKERS=0 \
   -e RUSHY_WORKER_COUNT=1 \
-  rushy
+  oleggromov/rushy
 ```
 
 and in case you've got your config in `/rushy/config/rushy.json`:
