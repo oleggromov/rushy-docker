@@ -32,7 +32,7 @@ You should mount it to `/var/rushy/reports`.
 Since `rushy` expects at least `--config` to be set, you should provide your container with the following environment variables:
 
 - `RUSHY_CONFIG` - config name relative to `/var/rushy/{config.storeDir}`
-- `RUSHY_WORKERS` - the corresponding `--workers` parameter
+- `RUSHY_WORKER` - the corresponding `--worker` parameter
 - `RUSHY_WORKER_COUNT` - `--workers-count` parameter.
 
 For more about rushy parameters, please take a look at the [Usage section](https://github.com/luchkonikita/rushy#usage) of the Readme.
@@ -50,7 +50,7 @@ docker run \
   -v /rushy/config:/var/config/:ro \
   -v /rushy/reports:/var/rushy/reports\
   -e "RUSHY_CONFIG=rushy.json" \
-  -e RUSHY_WORKERS=0 \
+  -e RUSHY_WORKER=0 \
   -e RUSHY_WORKER_COUNT=1 \
   oleggromov/rushy
 ```
